@@ -1,0 +1,30 @@
+<html>
+    <head>
+    <title>Vue Sample</title>
+    </head>
+    <body>
+        <div id="app">
+            <header>
+                <h3>
+                    {{ message }}<br/>
+                    {{ newData }}
+                </h3>
+            </header>
+            <section>
+                <p v-bind:id="uid"></p>
+                <button v-on:click="clickBtn">alert</button>
+                
+                <!-- #3 -->
+                <button v-on:click="newClickBtn">새로운 버튼</button>
+
+                <ul v-if="flag"> 
+                    <li>1</li>
+                    <li>2</li>
+                    <li>3</li>
+                </ul>
+            </section>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
+        <script src="./p112.ex.js"></script>
+    </body>
+</html>
