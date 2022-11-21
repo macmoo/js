@@ -1,7 +1,7 @@
 <template>
     <section>
         <ul>
-            <li v-for="(todoItem, index) in todoItems" class="shadow">
+            <li v-for="(todoItem, index) in propsdata" class="shadow">
                 <i class="checkBtn fa fa-check" aria-hidden="true">
                     {{ todoItem }}
                 </i>
@@ -32,8 +32,9 @@ export default
     methods : {
         removeTodo(todoItem, index) {
             // console.log('remove todo clicked -> todoItem::' + todoItem + ', index::' + index);
-            localStorage.removeItem(todoItem);
-            this.todoItems.splice(index, 1);
+            // localStorage.removeItem(todoItem);
+            // this.todoItems.splice(index, 1);
+            this.$emit('removeTodo', todoItem, index);
         }
     }
 }

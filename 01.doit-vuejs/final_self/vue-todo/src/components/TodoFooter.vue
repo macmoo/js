@@ -7,9 +7,11 @@
 <script>
 export default
 {
-    methods : { 
+    methods : {
         clearTodo(){
-            localStorage.clear();
+            console.log('FOOTER::clearTodo()');
+            // localStorage.clear();
+            this.$emit('removeAll');
         }
     }
 }

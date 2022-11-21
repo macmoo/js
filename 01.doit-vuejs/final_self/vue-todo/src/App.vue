@@ -1,9 +1,9 @@
 <template>
   <div id="app">
     <TodoHeader></TodoHeader>
-    <TodoInput v-on:addTodo="addTodo"></TodoInput>
-    <TodoList  v-bind:propsdata="todoItems"></TodoList>
-    <TodoFooter></TodoFooter>
+    <TodoInput  v-on:addTodo="addTodo"></TodoInput>
+    <TodoList   v-bind:propsdata="todoItems" @removeTodo="removeTodo"></TodoList>
+    <TodoFooter v-on:removeAll="clearAll"></TodoFooter>
   </div>
 </template>
 
@@ -14,9 +14,18 @@ import TodoList   from './components/TodoList.vue';
 import TodoFooter from './components/TodoFooter.vue';
 export default
 {
+  props:['propsdata'],
   data(){
     return {
       todoItems: []
+    }
+  },
+  created(){
+    console.log('vue::addTodo');
+    if(localStorage.length > 0){
+      for(var i = 0; i < localStorage.length; i++){
+        this.todoItems.push(localStorage.key(i));
+      }
     }
   },
   components:{
@@ -27,7 +36,18 @@ export default
   },
   methods: {
     // 데이터 추가
-    addTodo(){
+    addTodo(todoItem){
+      console.log('vue::addTodo');
+      localStorage.setItem(todoItem, todoItem);
+      this.todoItems.push(todoItem);
+    },
+    clearAll(){
+      localStorage.clear();
+      this.todoItems = [];
+    },
+    removeTodo(todoItem, index){
+      localStorage.removeItem(todoItem);
+      this.todoItems.splice(index, 1);
     }
   }
 }
